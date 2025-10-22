@@ -12,6 +12,28 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      Environment:
+        description: 🌍 Choose the environment to deploy to (e.g., dev, qa, prod)
+        required: true
+        type: choice
+        options:
+          - dev
+          - qa
+          - prod
+        default: dev
+
+      CreateFunctionApp:
+        description: 🏗️ Is the storage ready for the function app? (Check this to deploy the azure function app)
+        required: false
+        type: boolean
+        default: true
+
+      Destroy:
+        description: ⚠️ Please proceed with caution ⚠️ | ❌ Destroy resources instead of creating them? (Checking yes will destroy all resources)
+        required: false
+        type: boolean
+        default: false
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
